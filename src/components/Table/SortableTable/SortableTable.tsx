@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import TableHeader from '../TableComponents/TableHeader'
 import TableRow from '../TableComponents/TableRow'
-import TableCaption from '../TableComponents/TableCaption'
 import TableBody from '../TableComponents/TableBody'
 import type { City } from 'api/getCities';
 import TableDataCell from '../TableComponents/TableDataCell'
+import Pagination from '../Pagination/Pagination';
 
 // TO DO: sortable as a field?
 type SortableTableProps = {
@@ -31,7 +31,6 @@ export const SortableTable: React.FC<SortableTableProps> = ({ data }) => {
             <table style={{ borderCollapse: "collapse" }}>
                 <thead>
                     <TableRow>
-                        {/* <TableCaption>{caption}</TableCaption> */}
                         {Object.keys(data[0]).map((entry, index) => (
                             <TableHeader key={index}>{entry}</TableHeader>
                         ))}
@@ -46,11 +45,9 @@ export const SortableTable: React.FC<SortableTableProps> = ({ data }) => {
                         </TableRow>
                     ))}
                 </TableBody>
-
-
-
-
-
+                <tfoot>
+                    <Pagination />
+                </tfoot>
             </table >
         </>
     )

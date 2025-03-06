@@ -1,18 +1,22 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import React from 'react'
+import { render } from '@testing-library/react'
+import axe from 'axe-core';
+import SortableTable from './SortableTable';
 
-describe('main page', () => {
-    it.todo('renders page heading', async () => {
-        // render(<Pagination />);
-        const heading = await screen.findByRole('heading', { name: 'City List' });
-        expect(heading).toBeInTheDocument();
-    });
+const mockData = {
+    "id": 1392685764,
+    "name": "Tokyo",
+    "nameAscii": "Tokyo",
+    "country": "Japan",
+    "countryIso3": "JPN",
+    "capital": "primary",
+    "population": 39105000
+}
 
-    it.todo('does a search correctly', async () => {
-        // render(<Pagination />);
-        expect(await screen.findByText(/Tokyo/)).toBeInTheDocument();
-        const textInput = screen.getByRole('textbox', { name: 'Search' });
-        userEvent.type(textInput, 'osaka');
-        expect(screen.queryByText(/Tokyo/)).not.toBeInTheDocument();
+describe("Sortable Table tests", () => {
+    it('should render without accessibility violations', async () => {
+        const { container } = render(<SortableTable data={[mockData]} />);
+        const results = await axe.run(container);
+        expect(results.violations.length).toBe(0);
     });
 });
