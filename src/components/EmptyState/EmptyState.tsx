@@ -3,13 +3,21 @@
 // Do we limit which components can be displayed here or do we only have one?
 // Do we permit actions?
 
-// Further explorations: add relevant CTA like clear or add an item
-export const EmptyState = () => {
+import styled from "styled-components"
+
+// Time tradeoff: No button on the CTA. 
+// Would be nice to have a clear/reset filter or a suggested filter search to encourage interaction/reduce dead-ending. 
+const EmptyState = () => {
     return (
-        <>
+        <EmptyStateWrapper>
             <h3>No results found</h3>
-            <span>Based on the filters that are applied, there are no results to display </span>
-        </>
+            <p>Based on the filters that are applied, there are no results to display. </p>
+            <p>Try a different search.</p>
+        </EmptyStateWrapper>
     )
 }
+
+const EmptyStateWrapper = styled.div`
+    text-align: center;
+`
 export default EmptyState
