@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 import type { City } from 'api/getCities';
 import { getCities } from 'api/getCities';
 import './App.css';
+import { Search } from 'components/Search';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,38 +12,37 @@ const App = () => {
 
   const cityRows = useMemo(() =>
     cities.map(s => <pre key={s.id}>{JSON.stringify(s)}</pre>),
-  [cities]);
+    [cities]);
 
   const runSearch = useCallback(async (term: string) => {
-    try
-    {
+    try {
       const searchResult = await getCities({ searchTerm: term });
       setCities(searchResult);
     } catch (err: any) {
       setError(err);
     }
-  }, []);
+  }, [setCities, setError]);
 
   useEffect(() => {
     runSearch(searchTerm);
-  }, [runSearch, searchTerm]);
+  }, [searchTerm]);
 
   const onSearchTermChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.currentTarget.value);
     event.preventDefault();
   };
 
+  // A11y bug - design doesn't have an H1 or label for the table
   return (
     <div className="App">
       <header className="App-header"></header>
       <h1>City List</h1>
-      <form>
-        <label htmlFor="search">Search</label>
-        <input id="search" name="search" type="text" onChange={() => onSearchTermChange}/>
-      </form>
+      <Search onSearchTermChange={onSearchTermChange} />
+      <table>
+      </table>
       {error ? <pre>{`Eek! ${error.message}`}</pre> : cityRows}
     </div>
   );
- };
+};
 
 export default App;
