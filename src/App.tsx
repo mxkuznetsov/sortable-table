@@ -2,11 +2,12 @@ import { useEffect, useCallback, useState, useMemo } from 'react';
 import type { ChangeEvent } from 'react';
 import type { City } from 'api/getCities';
 import { getCities } from 'api/getCities';
-import './App.css';
+import './index.css';
 import SortableTable from 'components/Table/SortableTable/SortableTable';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import EmptyState from 'components/EmptyState/EmptyState';
 import Pagination from 'components/Table/Pagination/Pagination';
+import styled from 'styled-components';
 
 type QueryState = {
   searchTerm: string,
@@ -64,43 +65,42 @@ const App = () => {
     setQuery({ ...query, itemsPerPage: newSize, currentPage: 1 });
   };
 
-  // Loading state
-  // In a large flow like this, a skeleton would look better and provide visual context for what data will be loaded in.
-  // A spinner could be another way of approaching this. 
-
-  // A11y bug - design doesn't have an H1 or label for the table
-  // TO DO: Layout components
-  // TO DO: refactor error /loading logic. Maybe also make it one state object.
-  // Adding component/ page-level error boundaries, log the error
-  /* Error handling trade offs. Do we want to surface the message to the user - is this a situation where the message will help them recover/ is that even available in the API?
-      It doesn't look like error.cause is going to help us. We could add a helper to map the different server errors to readable/recovrable messaging. Let's just let them know how to recover and send the error to our logging software to find out.  */
-
-  // Client side vs server side pagination! 
-  // Server side: Paginating on server side reduces intial load time
-  // Client side: Better for small data, but makes other page fetches faster since it's all already there
-  // Would be nice if this api also sent back the total
-  // Might want to use a context provider/redux here for state management. Ran out of time. Makes it easier when we have a lot of different states going on that other components may want to
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      <h1>City List</h1>
-      <SearchComponent placeholder={"Search for a city"} onSearchTermChange={onSearchTermChange} />
-      {isLoading ? <p>Loading...</p> :
-        cities.length ?
-          <>
-            <SortableTable data={cities} />
-            <Pagination
-              currentPage={query.currentPage}
-              itemsPerPage={query.itemsPerPage}
-              onPageChange={onPageChange}
-              onPageSizeChange={onPageSizeChange} />
-          </> :
-          <EmptyState />
-      }
-      { }
-      {error && <pre>{`We can't load this search. Please try another filter.`} </pre>}
-    </div >
+    <Layout className="App">
+      <Container>
+        <h1 className='sr-only'>City List</h1>
+        <SearchComponent placeholder={"Search for a city"} onSearchTermChange={onSearchTermChange} />
+        {isLoading ? <p>Loading...</p> :
+          cities.length ?
+            <div>
+              <SortableTable data={cities} />
+              <Pagination
+                currentPage={query.currentPage}
+                itemsPerPage={query.itemsPerPage}
+                onPageChange={onPageChange}
+                onPageSizeChange={onPageSizeChange} />
+            </div> :
+            <EmptyState />
+        }
+        {error && <pre>{`We can't load this search. Please try another filter.`} </pre>}
+      </Container>
+    </Layout >
   );
 };
+
+const Layout = styled.main`
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+`
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 64px;
+`
 
 export default App;

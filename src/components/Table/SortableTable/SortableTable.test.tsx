@@ -19,4 +19,9 @@ describe("Sortable Table tests", () => {
         const results = await axe.run(container);
         expect(results.violations.length).toBe(0);
     });
+    it.todo('should sort data', async () => {
+        const { container } = render(<SortableTable data={[mockData]} />);
+        const results = await axe.run(container);
+        expect(results.violations.length).toBe(0);
+    });
 });

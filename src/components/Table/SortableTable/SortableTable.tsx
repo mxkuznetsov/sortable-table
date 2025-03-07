@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react'
-import TableHeader from '../TableComponents/TableHeader'
 import TableRow from '../TableComponents/TableRow'
 import TableBody from '../TableComponents/TableBody'
 import type { City } from 'api/getCities';
 import TableDataCell from '../TableComponents/TableDataCell'
+import styled from 'styled-components';
+import TableHeaderCell from '../TableComponents/TableHeaderCell';
 
 // TO DO: sortable as a field?
 type SortableTableProps = {
@@ -11,12 +12,11 @@ type SortableTableProps = {
     caption?: string,
 }
 
-// I've previously used HighCharts, amCharts, and MUI for data viz. For this exercise, we could use something like TanStack React Table.
 export const SortableTable: React.FC<SortableTableProps> = ({ data }) => {
     const [sortedField, setSortedField] = useState("")
 
+    // return the headers that are set to visible: true
     const getVisibleHeaders = () => {
-        // return the headers that are set to visible: true
     }
 
 
@@ -43,14 +43,14 @@ export const SortableTable: React.FC<SortableTableProps> = ({ data }) => {
     // This should ideally have a caption or table description so screen reader users can skip over it if it's not interesting to them
     return (
         <>
-            <table style={{ borderCollapse: "collapse" }}>
-                <thead>
+            <Table style={{ borderCollapse: "collapse" }}>
+                <TableHead>
                     <TableRow>
                         {Object.keys(data[0]).map((entry, index) => (
-                            <TableHeader key={index} entry={entry} setSortedField={setSortedField}>{entry}</TableHeader>
+                            <TableHeaderCell key={index} entry={entry} setSortedField={setSortedField}>{entry}</TableHeaderCell>
                         ))}
                     </TableRow>
-                </thead>
+                </TableHead>
                 <TableBody>
                     {sortedData.map((city: City) => (
                         <TableRow key={city.id}>
@@ -60,9 +60,16 @@ export const SortableTable: React.FC<SortableTableProps> = ({ data }) => {
                         </TableRow>
                     ))}
                 </TableBody>
-            </table >
+            </Table >
         </>
     )
 }
+
+const Table = styled.table`
+    width: 900px
+`
+
+const TableHead = styled.thead`
+`
 
 export default SortableTable

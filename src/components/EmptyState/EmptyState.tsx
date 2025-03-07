@@ -1,9 +1,9 @@
+import styled from "styled-components"
+
 // For a DS component: increase flexibility and determine style guidleines
 // Which text snippets do we allow? Unlimited?
 // Do we limit which components can be displayed here or do we only have one?
 // Do we permit actions?
-
-import styled from "styled-components"
 
 // Time tradeoff: No button on the CTA. 
 // Would be nice to have a clear/reset filter or a suggested filter search to encourage interaction/reduce dead-ending. 

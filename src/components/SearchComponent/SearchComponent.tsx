@@ -1,6 +1,5 @@
-// Reference: https://workbench.gusto.com/components/control-layout/
 import { ChangeEvent } from 'react';
-import SearchIcon from './../../assets/SearchIcon.svg'
+import { ReactComponent as SearchIcon } from './../../assets/SearchIcon.svg'
 import styled from 'styled-components'
 
 type SearchProps = {
@@ -16,24 +15,30 @@ const SearchComponent: React.FC<SearchProps> = ({ placeholder = "Search", onSear
     return <>
         <Form>
             <label className="sr-only" htmlFor="search">Search</label>
-            <StyledSearchIcon alt="" />
+            <StyledSearchIcon>
+                <SearchIcon />
+            </StyledSearchIcon>
             <StyledSearchInput id="search" name="search" type="text" placeholder={placeholder} onChange={onSearchTermChange} />
         </Form>
     </>
 }
 
+// I'm sure there's a CSS hack to avoid rounded corners.
 const Form = styled.form`
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #919197;
-    background-color: #F4F4F3;
+    box-shadow: inset 0px -502px 0px -500px ${({ theme }) => theme.colors.border.input};
+    background-color: ${({ theme }) => theme.colors.background.input};
+    width: 400px;
+    padding: 12px;
+    margin-bottom: 24px;
+    border-radius: 4px;
 `;
 
-const StyledSearchIcon = styled.img.attrs({
-    src: SearchIcon,
-})`
-    width: 16px;
-    height: 16px;
+const StyledSearchIcon = styled.div`
+    margin: 8px;
+    width: ${({ theme }) => theme.size.icons};
+    height: ${({ theme }) => theme.size.icons};
 `;
 
 const StyledSearchInput = styled.input`

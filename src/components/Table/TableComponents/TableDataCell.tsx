@@ -11,5 +11,6 @@ const StyledTableData = styled.td`
     border-bottom: 1px solid #EAEAEA;
     color: #525257;
     padding: 16px;
+    min-width: 48px;
 `
 export default TableDataCell
