@@ -35,13 +35,13 @@ const App = () => {
         limit: query.itemsPerPage
       });
       setCities(searchResult);
+      setIsLoading(false)
+
     }
     // Error handling: if there's not enough results, handle the pagination
     catch (err: any) {
-      setError(err);
-    }
-    finally {
       setIsLoading(false)
+      setError(err);
     }
   }, [setCities, setError]);
 

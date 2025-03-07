@@ -4,21 +4,29 @@ import styled from 'styled-components'
 // TO DO: Add icon sizing to theme file
 
 type TableHeaderProps = {
-    sortable?: Boolean,
+    sortable?: boolean,
+    setSortedField: (entry: string) => void,
+    entry: string,
     children: React.ReactNode
 }
 
 // Time tradeoff: Maybe we'd want to enforce sentence casing in English and convert the text
 // Or maybe we find that's too brittle for how we handle internationalized strings
+// We would also want some sort of alt text to denote the sorted state that works wiht the rest of the component
 
-const TableHeader: React.FC<TableHeaderProps> = ({ sortable = true, children }) => {
+
+const TableHeader: React.FC<TableHeaderProps> = ({ sortable = true, setSortedField, entry, children }) => {
+
     return (
         <StyledTableHeader>
             {children}
-            {sortable && <StyledSortIcon alt="" />}
+            {sortable && <button onClick={() => setSortedField(entry)}>
+                <StyledSortIcon />
+            </button>}
         </StyledTableHeader>)
 }
 
+// TO DO: Map icons to [ascending, descending, not sorted] and return the appropriate one
 const StyledSortIcon = styled.img.attrs({
     src: SortIcon,
 })`
