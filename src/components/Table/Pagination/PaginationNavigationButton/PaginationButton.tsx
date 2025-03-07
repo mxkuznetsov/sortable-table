@@ -17,10 +17,10 @@ const navIconMap: Record<PaginationButtonProps['variant'], React.ReactNode> = {
     previous: <ChevronLeft />,
 };
 
-const PaginationButton: React.FC<PaginationButtonProps> = ({ variant, onClick, disabled = "false" }) => {
+const PaginationButton: React.FC<PaginationButtonProps> = ({ variant, onClick, disabled = false }) => {
     return (
-        // use aria label since no visible text
-        <StyledButton aria-label={variant} onClick={onClick}>
+        // use aria label since no visible text. May want to revisit copy if people find it noisy
+        <StyledButton disabled={disabled} aria-label={`${variant} page of search results`} onClick={onClick}>
             {navIconMap[variant]}
         </StyledButton>
     )
@@ -29,9 +29,13 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({ variant, onClick, d
 // diabled icon  #BABABC 
 // background - color: #DCDCDC
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{
+    $disabled?: boolean;
+}>`
 border: none;
 padding: 16px;
+height: 44px;
+color: ${props => props.$disabled ? "#BABABC" : "#6c6c72"};
 `
 
 export default PaginationButton

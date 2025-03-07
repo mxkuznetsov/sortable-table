@@ -8,9 +8,10 @@ type SearchProps = {
     onSearchTermChange: (event: ChangeEvent<HTMLInputElement>) => {}
 }
 
-// TO DO: Add clear state
+// TO DO: Add clear component
 // TO DO: Global styling for color tokens and css reset
 // TO DO: fine tune colors and padding according to DS
+// TO DO: add 150ms debounce
 const SearchComponent: React.FC<SearchProps> = ({ placeholder = "Search", onSearchTermChange }) => {
     return <>
         <Form>
