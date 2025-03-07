@@ -1,19 +1,4 @@
 # Take-home Exercise: Sortable Table
-
-👋 Hello! Thanks so much for taking part in our interview process! We know that it takes time and effort away from other things, and we appreciate it.
-
-We set this exercise up for a couple of reasons that we hope resonate with you:
-1. We think that a 1-hour window into coding a single problem is only going to provide us with a narrow view of your skills; and we get it – the extra pressure of trying to solve some gotcha-type of question doesn't do anyone justice, either
-2. We want to mimic an experience as close as possible to what you'd be doing on a day-to-day basis as a Frontend Engineer here at  – reading through requirements, debating different approaches and putting up a PR for review 🙌
-
-This question is scoped down to what we think can be tackled in 4 hours or less, but otherwise, the requirements listed below, the designs provided alongside those and the process is very similar to what you could expect from working at .
-
-This exercise is very important in assessing your technical fit, so make sure you're happy with the result and that it reflects your skills. Your submission should be something you would be proud to submit on the job. Please commit your changes to a new branch in this repo, and once you're happy with the result, create a pull request with a description of your changes.
-
-**When you're done, please email your recruiter a link to your PR.**
-
-Your changes will be graded based on adherence to product and design requirements, performance, browser support, code readability and organization, error handling, lack of defects, and documentation. We'll get back to you within a week of your submission with the outcome. Please note that we will not provide you with detailed feedback on the exercise.
-
 **We've provided some code to get you started, though there are a few bugs in there that you'll have to deal with first.** Let us know if you have any questions. Good luck! 🍀
 
 For reference, we use the following tech stack for this exercise:
