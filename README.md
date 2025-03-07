@@ -1,6 +1,5 @@
 # Take-home Exercise: Sortable Table
-**We've provided some code to get you started, though there are a few bugs in there that you'll have to deal with first.** Let us know if you have any questions. Good luck! 🍀
-
+**We've provided some code to get you started, though there are a few bugs in there that you'll have to deal with first.** 
 For reference, we use the following tech stack for this exercise:
 * [TypeScript](https://www.typescriptlang.org)
 * [React](https://reactjs.org)
